@@ -1,4 +1,4 @@
-import ReactDOMServer from 'react-dom/server'
+import { renderToString } from 'react-dom/server'
 import puppeteer from 'puppeteer';
 import { Layout } from './reports/Layout';
 import { Report } from './reports/Report';
@@ -9,14 +9,15 @@ import { Report } from './reports/Report';
   });
   const page = await browser.newPage();
   // PDF出力対象ページ
-  const html = ReactDOMServer.renderToStaticMarkup(<Layout>
+  const html = renderToString(<Layout>
     <Report title={`調査結果`}></Report>
   </Layout>);
   await page.setContent(html)
   // PDF作成処理
   await page.pdf({
     path: "report.pdf",
+    format: "a4",
   });
   browser.close();
-  console.log("PDF出力完了");
+  console.log("done.");
 })();

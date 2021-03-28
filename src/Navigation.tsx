@@ -9,6 +9,7 @@ import {
 import { SomeReport } from './reports/some';
 
 const linkStyle = css`
+  font-size: 1.6rem;
   text-decoration: none;
 `
 const wrapperStyle = css`
